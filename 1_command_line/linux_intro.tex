@@ -1,0 +1,1258 @@
+%\dCcumentclass[aps,prd,superscriptaddress,twocolumn,floatfix,showpacs]{revtex4}
+\documentclass[aps,showpacs,prd,notitlepage,preprintnumbers,amsmath,amssymb,letterpaper]{revtex4}
+%\documentclass[aps,showpacs,prd,preprintnumbers,amsmath,amssymb,letterpaper]{revtex4-1}
+\newcommand{\pd}[2]{ {\frac{ \partial {#1}}{ \partial {#2}} } }
+\newcommand{\pdd}[2]{ { \frac{\partial^2 {#1}}{\partial {#2}^2} } }
+\newcommand{\pddd}[3]{ { \frac{\partial^2 {#1}}{\partial {#2} \partial {#3}} } }
+\newcommand{\pdddd}[4]{ { \frac{\partial^3 {#1}}{\partial {#2} \partial {#3} \partial {#4}}} }
+\newcommand{\pddddd}[5]{ { \frac{\partial^4 {#1}}{\partial {#2} \partial {#3} \partial {#4} \partial {#5}}} }
+\newcommand{\pdddddd}[6]{ { \frac{\partial^5 {#1}}{\partial {#2} \partial {#3} \partial {#4} \partial {#5} \partial {#6}}} }
+%\newcommand{\beq}{\begin{equation}}
+%\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\def\bvbm{\begin{verbatim}}
+\def\evbm{\end{verbatim}}
+
+
+\def\half{\frac{1}{2}}
+\def\ptl{\partial}
+\def\araa{Ann. Rev. Astron. Astrop.}
+\def\beqar{\begin{eqnarray}}
+\def\eeqar{\end{eqnarray}}
+%\newcommand{\llabel}[1]{\label{#1}{\bf #1~~~~}}   % show equation label
+\newcommand{\llabel}[1]{\label{#1}}              % DO NOT show equation label
+
+\newcommand{\labeq}[2]{ \begin{equation} \llabel{#1}
+{#2}
+\end{equation}}
+
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\calX}{\mathcal{X}}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{epsf}
+\usepackage{amsmath}
+\usepackage{graphics,epsfig,placeins,subfigure,wrapfig}
+\usepackage{enumitem}
+%\bibliographystyle{apsrev}
+%\bibliographystyle{ieeetr}
+%\shorttitle{WHITE DWARF-NEUTRON STAR BINARIES}
+% \shortauthors{...}
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%
+% Title
+%%%%%%%%%%%%%%%%%%%%
+\title{Introduction to the LINUX operating system}
+%%%%%%%%%%%%%%%%%%%%
+% Author
+%%%%%%%%%%%%%%%%%%%%
+\author{Vasileios Paschalidis${}^1$, Erik Wessel${}^2$}                           
+%
+%%%%%%%%%%%%%%%%%%%%
+% Address           
+%%%%%%%%%%%%%%%%%%%%
+\affiliation{
+  ${}^1$ Departments of Astronomy \& Physics, University of Arizona, Tucson
+  ${}^2$ Department of Physics, University of Arizona, Tucson
+}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  This note provides a basic introduction to the LINUX operating system, and the basic commands we will be using for the course. 
+\end{abstract}
+
+
+%\pacs{04.25.D-,04.25.dk,04.40.Dg}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%$
+% Introduction
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Shell configuration}
+
+%% To log into the LINUX server open the ssh client, then enter your netid and password and in the host enter
+%% \begin{verbatim}
+%% phys-noether.catnet.arizona.edu
+%% \end{verbatim}
+
+%% Then hit enter to connect.
+
+%% You should now be on the Linux server. We will use the bash shell.\\
+
+%% If you have laptop running Linux or Apple's OS you can use the
+%% terminal to log in securely remotely.  To do this first you either
+%% need to be on the UAWifi or run UA's virtual private network (VPN)
+%% client. You can find instructions for setting up UA's VPN client here
+%% \url{https://it.arizona.edu/service/ua-virtual-private-network-vpn}.
+%% Once you are either on UAwifi or have set up a VPN you can ssh onto
+%% the linux server by typing
+%% \begin{verbatim}
+%% ssh -Y netid@phys-noether.catnet.arizona.edu
+%% \end{verbatim}
+%% At the prompt enter your netid password and voila!
+
+\begin{itemize}[leftmargin=*,itemsep=0.05em]
+\item To test whether your account is configured to the bash shell, in the
+prompt type
+
+\begin{verbatim}
+echo $SHELL
+\end{verbatim}
+
+If everything is set up properly you should see
+
+\begin{verbatim}
+/bin/bash
+\end{verbatim}
+
+\item Your home directory should initially be empty. To list the content of your home directory type:
+
+\begin{verbatim}
+ls
+\end{verbatim}
+  
+You should see nothing.
+
+  
+\end{itemize}
+
+The terminal may appear daunting at first. However, Linux is full of
+shortcuts and failsafes (you will learn the basics). For example, the
+bash shell creates a hidden file (we will talk about hidden files
+later) called \begin{verbatim}.bash_history\end{verbatim} which stores
+  your previous commands so you don't have to retype them. You can
+  access these by hitting the up arrow a few times. Try it now.
+
+
+\section{Creating and deleting directories}
+
+One of the most important aspects in keeping your files organized is to learn how to create directories. This can be done with the command
+
+\begin{verbatim}
+mkdir
+\end{verbatim}
+
+Type
+
+
+\begin{verbatim}
+mkdir dir1 
+\end{verbatim}
+
+\begin{verbatim}
+mkdir dir2
+\end{verbatim}
+
+To create directories dir1 and dir2. You can also create in one stroke a directory with subdirectories as follows
+
+\begin{verbatim}
+mkdir -p dir3/subdir/subsubdir
+\end{verbatim}
+
+The -p flag will create not only the directory subsubdir, but also the parent directories subdir and dir3.
+
+To delete an empty directory you can type
+
+\begin{verbatim}
+rmdir dir1
+\end{verbatim}
+
+``rm'' for remove, or for multiple directories at once
+
+\begin{verbatim}
+rmdir dir1 dir2
+\end{verbatim}
+
+If the directory ``dir1'' were not empty rmdir would error out with a message
+
+\begin{verbatim}
+rmdir: failed to remove 'dir1/': Directory not empty
+\end{verbatim}
+
+To remove a non-empty or empty directory you can type
+
+\begin{verbatim}
+rm -r dir1
+\end{verbatim}
+
+The command ``rm'' is the general command for removing files or directories, and the flag ``-r'' is there to tell ``rm'' to remove recursively.
+
+\section{Navigation}
+
+Just like in the Windows operating system, it is important to learn
+how to navigate through the multiple directories.
+
+\begin{itemize}
+\item One of the most
+important commands is ``pwd'', which allows you to find your current
+location. Type
+
+\begin{verbatim}
+pwd
+\end{verbatim}
+
+You should see
+
+\begin{verbatim}
+/home/netid
+\end{verbatim}
+
+where ``netid'' will be your netid. ``pwd'' stands for ``print working
+directory''.
+
+\item Another important command is ``ls'' which lists the contents under your
+  current location.  Type
+  
+\begin{verbatim}
+ls
+\end{verbatim}
+
+You should see dir3 (assuming you did not delete dir3).
+
+\item But, we know that dir3 has subdirectories. How can we go into these directories? This is achieved with the command ``cd'', which stands for ``change directory''. Type
+
+\begin{verbatim}
+cd dir3/subdir/subsubdir
+\end{verbatim}
+
+and now type again
+
+\begin{verbatim}
+pwd
+\end{verbatim}
+
+you should see
+
+\begin{verbatim}
+/home/netid/dir3/subdir/subsubdir
+\end{verbatim}
+
+This is the absolute path to the directory ``subsubdir'', which you
+can use to always get into that directory. If you type
+
+\begin{verbatim}
+cd
+\end{verbatim}
+
+without any argument, you will always end up to your home
+directory, which you can test by typing ``pwd''. If you type
+
+\begin{verbatim}
+cd dir3/subdir/subsubdir
+\end{verbatim}
+
+This is the relative path to ``dir3/subdir/subsubdir'' from your home
+directory.
+
+\item You can also use the ``..'' operator which is used to go one directory up (the immediate parent directory the working directory), i.e., if you now type
+
+\begin{verbatim}
+cd ../
+\end{verbatim}
+
+and now type
+
+\begin{verbatim}
+pwd
+\end{verbatim}
+
+you should get
+
+\begin{verbatim}
+/home/netid/dir3/subdir
+\end{verbatim}
+
+In other words you are into ``subdir'', which is the immediate parent directory
+of ``subsubdir''.
+
+\item Now, use the absolute path to the subsubdir to change into ``subsubdir'', i.e.,
+
+\begin{verbatim}
+cd /home/netid/dir3/subdir/subsubdir
+\end{verbatim}
+
+and type again
+
+\begin{verbatim}
+pwd
+\end{verbatim}
+
+You should now see ``/home/netid/dir3/subdir/subsubdir''. In other
+words when you use the absolute path, it does not matter where you
+are. You will always go into the directory you want.
+
+\item One of the most convenient shortcuts of linux is the
+  ``tab-completion''. Which helps in writing all these long paths.
+  Try again changing into the subsubdir using the absolute path
+
+\begin{verbatim}
+cd /home/netid/dir3/subdir/subsubdir
+\end{verbatim}
+
+but each time you hit a letter hit the ``tab'' button a couple of
+times, if the path is not auto-completed enter another letter in the
+path
+
+\end{itemize}
+
+
+\section{Files}
+
+Linux is an extensionless system. It doesn't depend on the extension of
+a file to tell what type of file it is. For example, a pure text file with
+the extension .txt or .dat or .png or .jpg is treated as a text file in linux.
+
+\begin{itemize}
+\item Let create our first file using the ``touch'' command. Type
+
+\begin{verbatim}
+cd /home/netid/dir3/subdir/subsubdir
+\end{verbatim}
+
+and
+
+
+\begin{verbatim}
+touch foo.txt foo1.txt foo2.txt
+\end{verbatim}
+
+This will create 3 empty files in the subsubdir directory. Strictly
+speaking, touch just updates the timestamp of last access of the
+files.  But, since these files never existed they are created by the
+system.
+
+Lets also write something in these files. Type
+
+\begin{verbatim}
+echo "First entry into foo file" >> foo.txt
+\end{verbatim}
+
+\begin{verbatim}
+echo "First entry into foo1 file" >> foo1.txt
+\end{verbatim}
+
+\begin{verbatim}
+echo "First entry into foo2 file" >> foo2.txt
+\end{verbatim}
+
+{\bf Hint: Remember to always use the up arrow to access your previous
+commands, so that you don't have to retype everything.}
+
+The ``echo'' command simply prints the text in the quotes, while the
+append operator ``$>>$'' just appends to the files the output from
+echo, i.e., the text in the quotes.
+
+\item We can now use the ``file'' command to figure out the file type, i.e.,
+enter
+  
+\begin{verbatim}
+file foo.txt
+\end{verbatim}
+
+and the output should be.
+\begin{verbatim}
+foo.txt: ASCII text
+\end{verbatim}
+
+\item When choosing file names and directory names, it is more
+  convenient to not use spaces as they require special treatment. A
+  better practice is to use underscores in the place of spaces, i.e.,
+
+\begin{verbatim}
+echo "First entry into foo file" >> my_fist_foo_file.txt
+\end{verbatim}
+
+\item Lets now list the contents of the subsubdir, i.e., type
+
+\begin{verbatim}
+ls 
+\end{verbatim}
+
+We can also use options on ls to obtain more information about the files, i.e.,
+
+\begin{verbatim}
+ls -l
+\end{verbatim}
+
+which will list the files in alphabetical order and show the permissions of the files (no need to get into this for our purposes), the owner and group of the files, the size of the files in bytes (if you use the flags ``-lh'' it will print the file size in human readable form), the timestamps for the files and the filenames. We can also use a combination of options. A useful one is
+
+\begin{verbatim}
+ls -ltrh
+\end{verbatim}
+
+which lists the files in reverse order time, i.e., the item that was
+accessed last appears at the bottom of the list.
+
+\item Earlier we mentioned that Linux has hidden files. We can list
+  these by using the ``-a'' or ``--all'' flag. Go to your home
+  directory using cd, and type
+
+\begin{verbatim}
+ls -a
+\end{verbatim}
+
+You should now see a number of files that start with a ``.''. All
+these are hidden files. You can also see your ``.bash\_history'' file
+(which contains your previous commands), as well as one of the most
+important files in Linux the ``.bashrc''. The ``.bashrc'' file is
+loaded every time you log into your linux account and can be used to
+define useful macros, including aliases, set shell variables (like the
+\$SHELL variable we used) and other useful shortcuts.
+
+ 
+
+\end{itemize}
+
+For most Linux commands there are manual pages which you can access by typing ``man'' and the command name, e.g.,
+
+\begin{verbatim}
+man ls
+\end{verbatim}
+
+In the manual pages you can read more about the command and the
+different options (flags) it has. Of course the world wide web is always
+your friend.
+
+\subsection{Moving files around}
+
+Copying files or moving them is always useful. Create a new directory in your home directory, typing
+
+\begin{verbatim}
+mkdir ~/dir1; cd
+\end{verbatim}
+
+Notice that we used ``$\sim$/'', which is a shortcur to the home
+directory path. We also used the semicolor ``;'' operator to separate
+the mkdir command from the cd command. You can use multiple semicolons
+on one line to separate multiple commands that you can execute in the
+order they appear and hit enter only once. Now copy the
+``my\_fist\_foo\_file.txt'' from subsubdir to the dir1
+directory. Using the ``cp'' (copy) command and the paths to the files
+
+\begin{verbatim}
+cp ./dir3/subdir/subsubdir/my_fist_foo_file.txt dir1/
+\end{verbatim}
+
+The first dot ``.'' is meant to indicate that {\tt dir3} is in your working directory.
+The command would be equivalent to
+
+\begin{verbatim}
+cp dir3/subdir/subsubdir/my_fist_foo_file.txt dir1/
+\end{verbatim}
+
+
+{\bf Remember to always use the tab completion to write the paths, so
+  that you don't have to type the full path.}
+
+
+The syntax of the copy command is ``cp [source] [destination]''. If you are sure
+you don't want to copy the file, but move it, i.e., no longer have the file
+in your source you can use the ``mv'' command, e.g.,
+
+\begin{verbatim}
+mv ./dir3/subdir/subsubdir/my_fist_foo_file.txt /dir3/subdir/
+\end{verbatim}
+
+Now list the contents of the subsubdir directory
+
+\begin{verbatim}
+ls ./dir3/subdir/subsubdir/
+\end{verbatim}
+
+and you should see the file you moved. Also, list the contents of subdir
+
+\begin{verbatim}
+ls ./dir3/subdir/
+\end{verbatim}
+
+and you will see the file was indeed moved. The copy command can be
+used to copy directories too.
+
+\section{Editors}
+
+One of the most important tools in building our programs are text
+editors.  Almost all Linux distributions these days have vi, vim and
+the emacs editors.  If you know vi or vim feel free to use it. Here we
+will see the emacs text editor in addition to vi/vim. Go into the subdir directory and
+launch emacs
+
+\subsection{Vi/vim}
+
+
+
+\subsection{emacs}
+\begin{verbatim}
+emacs my_fist_foo_file.txt
+\end{verbatim}
+
+You can now start to edit this file. Add a few sentences to it.
+\begin{itemize}
+
+\item To move fast between the text you can use the ``pg up'' and pg
+  dn'' keys, the ``home'' and ``end'' keys, you can keep the ``ctrl''
+  key pressed down while using the left, right, up and down arrows to jump
+  between words and text. To move a page down you can also type
+
+\begin{verbatim}
+ctrl+v
+\end{verbatim}
+
+and to move up
+
+\begin{verbatim}
+Meta+v
+\end{verbatim}
+
+where the ``Meta'' key is typically the ``alt'' key (the key left of the space bar).
+
+To move to the beginning of a line you can also type
+\begin{verbatim}
+ctrl+a
+\end{verbatim}
+
+and to the end of a line you can also type
+\begin{verbatim}
+ctrl+e
+\end{verbatim}
+
+
+These shortcuts will expedite greatly how quickly you move the cursor
+through the text. If you want to go directly to the end of the text (buffer)
+type
+
+\begin{verbatim}
+Meta+<
+\end{verbatim}
+
+and the beginning of the text (buffer)
+
+\begin{verbatim}
+Meta+>
+\end{verbatim}
+
+  
+\item To save what you wrote type 
+
+\begin{verbatim}
+ctrl+x+s
+\end{verbatim}
+
+\item To close emacs type
+
+\begin{verbatim}
+ctrl+x+c
+\end{verbatim}
+
+\item Copying and pasting inside a file is always useful. Open the file with emacs again
+
+\begin{verbatim}
+emacs my_fist_foo_file.txt
+\end{verbatim}
+
+\item Move the cursor to the beginning of the text you would like to copy/cut and hit
+
+\begin{verbatim}
+ctrl+space
+\end{verbatim}
+
+\item This activates the marking area tool. Use the arrows to highlight the area you want to cut/copy.
+To cut the text type
+
+\begin{verbatim}
+ctrl+w
+\end{verbatim}
+
+\item To copy the text type
+
+\begin{verbatim}
+Meta+w
+\end{verbatim}
+
+
+\item To paste the text, move the cursor where you want to paste the text and type
+
+\begin{verbatim}
+ctrl+y
+\end{verbatim}
+
+where ``y'' stands for yank.
+
+\item To remove (kill) an entire line in your text you can type
+
+\begin{verbatim}
+ctrl+k
+\end{verbatim}
+
+\item To undo a move type
+
+\begin{verbatim}
+ctrl+_
+\end{verbatim}
+
+In other words
+
+\begin{verbatim}
+ctrl+shift+-
+\end{verbatim}
+
+To redo a move type
+
+\begin{verbatim}
+ctrl+shift+space bar+-
+\end{verbatim}
+
+While these may sound like many commands, keep in mind that practice makes perfect!
+\end{itemize}
+
+\section{Other ways to read files}
+
+Linux has a number of tools to read files
+
+\begin{itemize}
+
+\item Cat $<$file$>$
+  
+  cat stands for concatenate. It will print the entire file in one go on your screen. Good for files
+  that are only a few lines long. 
+
+\item less $<$file$>$
+
+  It will print the file in pages that you can browse through using the up/down arrows or the up/down
+  page keys. Type ``Q'' to exit.
+
+\item head -nA $<$file$>$
+
+  Here A is a integer number. The command print on screen the first A lines of the file
+
+\item tail -nA $<$file$>$
+
+Here A is a integer number. The command print the last A lines of the file.
+
+\end{itemize}
+
+\section{Grepping}
+
+When debugging we will often need to find certain expressions in a file. Using the linux command
+grep is one of the best ways to find an expression in a text, e.g.,
+
+\begin{verbatim}
+grep "First" ~/dir3/subdir/my_fist_foo_file.txt
+\end{verbatim}
+
+The syntax is ``grep expression file''. The above will search and
+print all the occurences of ``First'' in the file
+my\_fist\_foo\_file.txt
+
+\section{Bash Scripting}
+
+A Bash script is a plain text file which contains a series of
+commands. These commands we would normally type ouselves in the linux
+terminal (such as ls or cp for example). However, when we want to
+automate doing large batch of jobs a bash script comes in very
+handy. In addition, a bash script can execute other bash scripts, so
+you can have a hierarchy of bash scripts that accomplish specific
+tasks.
+
+It is convention to give files that are Bash scripts an extension of
+``.sh'' (myscript.sh for example), but since linux is an extensionless
+operating system, this convention does not have to be respected.
+
+Let's create our first bash script, by creating a file myscript.sh
+which simply prints ``Hello world'' on the screen. In emacs create a
+file myscript.sh with the following content
+\begin{verbatim}
+#!/bin/bash
+# My first bash script
+echo "Hello World!"
+\end{verbatim}
+and save this file.
+
+Anything that can be executed in linux must have executable permissions. To make the myscript.sh executable type
+
+\begin{verbatim}
+chmod u+x myscript.sh
+\end{verbatim}
+
+To execute the bash script run
+
+\begin{verbatim}
+./myscript.sh
+\end{verbatim}
+
+In the script the hash exclamation mark ( \#! ) character sequence
+followed by a path, tells the rest computer what interpreter (or
+program) should be used to run (or interpret) the rest of the lines in
+the text file. (For Bash scripts it will be the path to Bash, but
+there are many other types of scripts and they each have their own
+interpreter.) This must be the first line of the script (not second
+or third even if the first lines are blank).
+
+Also, the hash must be followed by the exclamation mark. Otherwise
+anything after the hash is treated as a comment. This is why the
+second line in the script ``\# My first bash script'' did not print
+anything on screen. Like when writing code, comments are extremely
+useful in a script to tell the developer and possible future
+developers what specific parts of the script are doing.
+
+\subsection{Command line arguments}
+
+Bash scripts can get arguments. The following script
+is a simple copy script, it copies file \$1 (the first argument
+in the script) to something file \$2 (second argument in the script),
+then prints ``Details for file'' using the name of file \$2, and finaly
+lists the details
+
+\begin{verbatim}
+#!/bin/bash
+# A simple copy script
+cp $1 $2
+# Let's verify the copy worked
+echo Details for file $2
+ls -lh $2
+\end{verbatim}
+
+Take the above script and put it in a file that you call ``copy.sh'', and
+save it. Make the script executable, i.e.,
+
+\begin{verbatim}
+chmod u+x copy.sh
+\end{verbatim}
+
+Create an empty file file1.txt, by running
+
+\begin{verbatim}
+touch file1.txt
+\end{verbatim}
+
+and then execute
+
+\begin{verbatim}
+./copy.sh file1.txt file2.txt
+\end{verbatim}
+
+The script should copy file1.txt to file2.txt, and then print on screen the details of file2.txt. 
+
+You can add more arguments to a script which inside the script can be
+accessed through the variables \$1, \$2, \$3, up to \$9. Variable \$0
+is the name of the script. In general shell variables are treated as
+strings, but we can also do numerical calculations with them. 
+
+
+\subsection{Variables}
+
+In the previous example \$1, \$2 actually represent variables whose
+values are assigned by the arguments passed to the script at execution
+time. Variables are extremely important in doing magical operations
+with linux.
+
+We can also define variables that are local to the script, and which can
+take on the values from the arguments of the script. For example, the
+previous script can also be written as
+
+\begin{verbatim}
+#!/bin/bash
+# A simple copy script
+file1=$1
+file2=$2
+cp $file1 $file2
+# Let's verify the copy worked
+echo Details for file $file2
+ls -lh $2
+\end{verbatim}
+
+The above script does the same operation as the previous script. The
+difference is that we introduced the local variables ``file1'' and
+``file2'' here, which take on the values of variables \$1, and \$2,
+respectively. Put the previous lines in a script called, e.g.,
+``copy2.sh'', make the script executable, create a file file1.txt, and
+execute the script it in the same
+
+\begin{verbatim}
+./copy.sh file1.txt file2.txt
+\end{verbatim}
+
+The result should be identical as in the case of the ``copy.sh''
+script.
+
+We can also do arithmetic computations with variables. Let's look at
+the following script.
+
+\begin{verbatim}
+#!/bin/bash
+# Basic arithmetic using double parentheses
+a=$(( 4 + 5 ))
+echo $a # 9
+
+var1=4
+var2=5
+a=$(($var1+$var2))
+echo $a # 9
+
+b=$(( $a + 3 ))
+echo $b # 12
+
+b=$(( $a + 4 ))
+echo $b # 13
+(( b++ ))
+echo $b #   14
+
+(( b += 3 ))
+echo $b # 17
+
+a=$(( var1 * var2 ))
+echo $a # 20
+
+\end{verbatim}
+
+
+One other extremely useful utility are ``for loops''. For loops have
+the general sysntax ``for (variable) in (list); do (operations);
+done''. There are many ways to set a list of values that a variable
+can obtain. Let's look at the following simple script demonstrating a
+for loop, where the variable ``i'' takes on values 0 to 5 (with unit
+increment) and prints it on screen.
+
+\begin{verbatim}
+#!/bin/bash
+# Basic for loop
+for i in `seq 0 5`
+do
+  echo $i
+done
+\end{verbatim}
+
+Put the above in a script called ``loop.sh'', make it executable and
+run it. You should see on your screen
+
+\begin{verbatim}
+0
+1
+2
+3
+4
+5
+\end{verbatim}
+
+In the above, the ```seq 0 5`'' operator creates the list of numbers 0 1 2 3 4 5
+
+Now, let's use the above tools we learned to sum the numbers from 0 to
+1000 with unit increment.
+
+\begin{verbatim}
+#!/bin/bash
+# Basic for loop for summing
+sum=0
+for i in `seq 0 1000`
+do
+  sum=$(($i+$sum))
+done
+echo "The sum from 0 to 1000 is:" $sum
+\end{verbatim}
+
+Put the above in a script called ``sum.sh'', make it executable and
+run it. You should see on your screen
+
+\begin{verbatim}
+The sum from 0 to 1000 is: 500500
+\end{verbatim}
+
+Now, let's look at a very useful application of loops. Let's first
+create 1000 files called file1.txt, file2.txt ....file1000.txt using the following script
+
+\begin{verbatim}
+#!/bin/bash
+
+for i in `seq 1 1000`
+do
+  touch file$i.txt # the strings file $i and .txt are concatenated here
+done
+ls file* # let's list the files after we have created them 
+\end{verbatim}
+
+Add the above lines in a ``generate\_files.sh'' script and execute it.
+This may take a couple of seconds to finish, but you should see all
+the files you generated. Now, let's a loop to rename the files from
+file1.txt file2.txt ... to file\_1.txt file\_2.txt ..., using a cool
+linux utility called sed, and the following script
+
+\begin{verbatim}
+#!/bin/bash
+
+for i in `ls file*` # here we create a list using ls
+do
+  j=`echo $i || sed s/file/"file_"/` # echo prints the value of i and the output is piped with the pipe operatro || to sed, which then replaces the string "file" with the string "file_".
+done
+ls file* # let's list the files after we have changed their names
+\end{verbatim}
+
+With the stroke of one key and the above script we were able to rename
+1000 files. Similarly we can manipulate files, even change their
+content and parse them. We can create loops with conditionals and exit
+clauses. Your imagination is the limit, and the internet is your
+friend! The linux community is extremely supportive, and chances are
+that what you want to do, somebody else has already a bash script for
+it. Linux is an extremely powerful operating system.
+
+
+\section{Basic plotting with gnuplot}
+
+Gnuplot is linux utility for plotting data files and functions. Gnuplot
+has many intrinsic functions one can plot. To start plotting data or
+functions first we need to launch gnuplot. To do so type
+
+\begin{verbatim}
+gnuplot
+\end{verbatim}
+
+Now you will be in the gnuplot command line. To plot the $\sin(x)$ simply type
+
+\begin{verbatim}
+p sin(x)
+\end{verbatim}
+
+and hit ``enter''. To specify a range in the x axis type
+
+\begin{verbatim}
+p [-3.1415:3.1415] sin(x) 
+\end{verbatim}
+
+and hit enter.  The last command plots $\sin(x)$ from $-\pi$ to
+$\pi$. You can also set log scales if you desire. For example type
+
+\begin{verbatim}
+p [0,10] x**2 
+\end{verbatim}
+
+and hit enter. The operator ``**'' is the ``to the power of'' operator. So,
+this last command plots the function $f(x)=x^2$. To set the y-axis to be in log
+scale (i.e., a log-linear plot) just type
+
+\begin{verbatim}
+set log y; p [0.1:10] x**2 
+\end{verbatim}
+
+Here you learned that the semicolon separates different commands. To also
+set the x-axis in log scale type
+
+\begin{verbatim}
+set log y; set log x; p [0.1:10] x**2 
+\end{verbatim}
+and hit enter. You should see a straight line.
+
+We can also label the axes
+
+\begin{verbatim}
+set log y; set log x; set xlabel "x"; set ylabel "f(x)=x*x"; p [0.1:10] x**2 
+\end{verbatim}
+
+Gnuplot has multiple intrinsic functions {\tt log} (natural log) {\tt
+  log10} (base 10 log), {\tt sin(x)}, , {\tt cos(x)}, {\tt tan(x)},
+{\tt exp(x)} (the exponential function), $\ldots$.
+
+Gnuplot can make plots not only from analytic functions, but also from data.
+Put the following data into a file and save it as ``data.txt''.
+
+\begin{verbatim}
+0.1     0.00316096 0.00537051 
+0.05    0.00101441 0.00185594 
+0.025   0.00025341 0.00048454 
+0.0125  6.3341e-05 0.00012385 
+0.00625 1.5834e-05 3.1312e-05 
+\end{verbatim}
+
+As you can see the above data set has 3 columns. To make a plot of column 2
+vs column 1, while in the gnuplot command line simply type
+
+\begin{verbatim}
+p "data.txt" u 1:2 w l 
+\end{verbatim}
+%
+and hit enter. Here in double quotation marks we place the name of the
+file ``u'' stands for ``using'', ``1:2'' stands for column 2 vs column
+1, so the first column that appears goes to the x-axis of the
+plot. The ``w l'' stands for ``with lines'', i.e., it connects the
+data points.  If you want to show the points alone use ``w p'' (with
+points), and if you want both points and lines use ``w lp'' (with
+line-points).
+
+We can also create a single plot that shows more than one curves, by
+separating with commas the other curves. We can use, e.g. the third
+column, as follows
+
+\begin{verbatim}
+p "data.txt" u 1:2 w l, "data.txt" u 1:3 w l
+\end{verbatim}
+
+The data here are very close to each other, so we need to take log
+scales, i.e.,
+
+\begin{verbatim}
+set log x; set log y; p "data.txt" u 1:2 w l, "data.txt" u 1:3 w l
+\end{verbatim}
+
+Let's also add labels to the axes
+
+\begin{verbatim}
+set log x; set log y; set xlabel "{/Symbol D} x"; set ylabel "Error";  
+p "data.txt" u 1:2 w l, "data.txt" u 1:3 w l
+\end{verbatim}
+%
+where you can run the first line (i.e., hit enter), and then run the second line (hitting
+enter again). Here the construct {\tt \{/Symbol D\}} allows you to write Greek
+letters, the particular one is the upper case delta, i.e., $\Delta$. We can also add
+titles to the key (or legend) of the plot, by using the {\tt t} (title) operator as follows
+
+\begin{verbatim}
+set log x; set log y; set xlabel "{/Symbol D} x"; set ylabel "Error";  
+p "data.txt" u 1:2 w l t "Approximation 1", "data.txt" u 1:3 w l t "Approximation 2"
+\end{verbatim}
+
+We can also add analytic functions to our plot, e.g.,
+
+\begin{verbatim}
+set log x; set log y; set xlabel "{/Symbol D} x"; set ylabel "Error";  
+p "data.txt" u 1:2 w l t "Approximation 1", "data.txt" u 1:3 w l t "Approximation 2", 0.01*sin(x) w l
+\end{verbatim}
+%
+Notice that the legend is automatically set to the analytic function name.
+
+Once we are happy with how our plot looks, we can output it to a file. To do this we first
+decide the file type and set the filename. For example to output a pdf file type
+
+\begin{verbatim}
+set output "myplot.pdf"
+\end{verbatim}
+%
+where in double quotes you enter your filename with the corresponding extension.
+Then you need to set the terminal to be the corresponding one by typing
+%
+\begin{verbatim}
+set term pdf
+\end{verbatim}
+%
+and then finally either type
+\begin{verbatim}
+replot
+\end{verbatim}
+%
+if you have already seen the plot in the gnuplot x-terminal, or to be safe just type
+the whole command again, i.e.,
+\begin{verbatim}
+set log x; set log y; set xlabel "{/Symbol D} x"; set ylabel "Error";  
+p "data.txt" u 1:2 w l t "Approximation 1", "data.txt" u 1:3 w l t "Approximation 2", 0.01*sin(x) w l
+\end{verbatim}
+%
+
+To exit gnuplot, either hit {\tt ctrl+D} or type $exit$ and hit enter. If the Greek letter is not rendered properly on the
+machine you first have to generate an eps file, and then convert it to pdf. This can be done by using the postscript terminal
+of gnuplot. To do this at the step where you set the output file name you type
+%
+\begin{verbatim}
+set output "myplot.eps"
+\end{verbatim}
+%
+where in double quotes you enter your filename with the corresponding extension.
+Then you need to set the terminal to be the corresponding one by typing
+%
+\begin{verbatim}
+set term post eps enhanced color
+\end{verbatim}
+%
+and finally replot
+%
+\begin{verbatim}
+set log x; set log y; set xlabel "{/Symbol D} x"; set ylabel "Error";  
+p "data.txt" u 1:2 w l t "Approximation 1", "data.txt" u 1:3 w l t "Approximation 2", 0.01*sin(x) w l
+\end{verbatim}
+%
+where you can hit enter after the first line, and then continue onto a
+second line. All different commands can be in separate lines if you
+want. Hitting enter after the second line will give the file you want,
+and you can exit gnuplot. After generating the {\tt myplot.eps} file,
+you can convert it to pdf by using the linux {\tt ps2pdf} utility,
+i.e., typing
+%
+\begin{verbatim}
+ps2pdf -dEPSCrop myplot.eps
+\end{verbatim}
+
+To view the plot you can use the {\tt evince} utility, by typing
+{\tt evince myplot.eps} or {\tt evince myplot.pdf}. You can further
+convert the pdf plot to png or jpg by using the linux convert (imagemagic)
+utility. To convert to png run
+
+\begin{verbatim}
+convert -density 300 myplot.pdf myplot.png
+\end{verbatim}
+
+and to convert to jpg run
+
+\begin{verbatim}
+convert -density 300 myplot.pdf myplot.jpg
+\end{verbatim}
+
+
+\section{Makefiles}
+
+The Linux utility {\tt make} provides a convenient way for combining
+jobs/files that depend on other files. To drive {\tt make} we need a
+{\tt Makefile}. Most often, the {\tt Makefile} tells {\tt make} how to
+compile and link a program.
+
+A makefile consists of ``rules'' which have the following structure
+%
+\begin{verbatim}
+target ... : prerequisites ...
+        recipe
+        ...
+\end{verbatim}
+
+A {\tt target} can be the name of a file. Examples of targets are
+executable or object files.
+
+The {\tt prerequisites} are files used as input to generate the {\tt
+  target}. A {\tt target} can depend on several files.
+
+A {\tt recipe} is an action that {\tt make} executes.
+{\bf Note: you need to put a tab character at the beginning of every recipe!}
+
+
+Often a {\tt recipe} is in a {\tt rule} with {\tt prerequisites} and
+will generate a {\tt target} file if any of the {\tt prerequisites}
+change. This is extremely useful when compiling a very large code that
+contains multiple files, because using {\tt make} will recompile only
+those files that have changed.
+
+However, a {\tt rule} with a {\tt recipe} for a {\tt target} need not
+have {\tt prerequisites}. For example, a {\tt rule} containing the
+{\tt rm} command associated with a {\tt target} called ``clean'' does
+not have prerequisites.
+
+A simple example {\tt Makefile} would contain the following
+\begin{verbatim}
+
+myprogram : main.o utils.o
+            g++ -o myprogram main.o utils.o
+
+main.o : main.C header.h
+        g++ -c main.C
+
+utils.o : utils.C
+        g++ -c utils.C
+
+clean :
+        rm myprogram main.o utils.o
+
+\end{verbatim}
+
+If we have the files main.C, utils.C and header.h, and run {\tt make}
+in the same directory as the {\tt makefile}, the above makefile will
+then build the executable {\tt myprogram}. The flag ``-c'' is to just
+compile files, but not link them. If instead you type {\tt make clean},
+make will then remove the files myprogram, main.o, utils.o.
+
+In the above makefile, we have 4 targets that include the executable
+file {\tt myprogram}, and the object main.o, utils.o and the target
+{\tt clean}. The prerequisites for myprogram are main.o and utils.o
+which have their own prerequisites which are main.C, header.h and
+utils.C. A {\tt recipe} follows each line that contains a {\tt target}
+and {\tt prerequisites}, that simply compiles the relevant files.
+
+The target {\tt clean} is not a file, and all makefiles typically contain
+it for convenience.
+
+If we have a code that contains many files, it is far more convenient
+to use Variables to make our Makefiles simpler. Using variables the previous
+makefile can be simplified as follows
+\begin{verbatim}
+
+OBJS =  main.o utils.o
+cpp=g++
+cppflags= -c
+
+myprogram : ${OBJS}
+            ${cpp} -o myprogram ${OBJS}
+
+main.o : main.C myheader.h
+         ${cpp} ${cppflags} main.C 
+
+utils.o : utils.C
+        ${cpp} ${cppflags} utils.C
+
+clean :
+        rm myprogram ${OBJS}
+
+\end{verbatim}
+
+The variable {\tt OBJS} above contains the object files our program
+depends on.  The variable {\tt cpp} is the compiler, and {\tt
+  cppflags} is the compiler flags we want to use. Everything else is
+basically the same and to use a variable we always put the variable
+name within curly brackets that follow a dollar sign: {\tt \$\{\}}. Using
+variables way we can simply change the compiler program, the flags,
+add more flags, such as compiler optimization flags, as well as
+add/remove more object files.
+
+\subsection{Compiling multiple programs with one Makefile}
+
+We can use one makefile to compile multiple programs.  For example
+lets assume that we have 3 programs. One program is in files
+program1.C header.h c utils.C, the second program is contained in file
+program2.C and the third in file program3.C. The following Makefile
+can compile these programs
+
+A simple example {\tt Makefile} would contain the following
+\begin{verbatim}
+
+# Target to compile all
+all: program1 program2 program3
+
+# Target for program in program1.C, utils.C and header.C. 
+program1 : program1.o utils.o
+            g++ -o myprogram1 program1.o utils.o
+
+program1.o : program1.C header.h
+        g++ -c program1.C
+
+utils.o : utils.C
+        g++ -c utils.C
+
+# Target for program in program2.C
+program2 : program2.o
+            g++ -o program2 program2.o
+
+program2.o : program2.C
+        g++ -c program2.C
+
+# Target for program in program3.C
+program3 : program3.o
+            g++ -o program3 program3.o
+
+program3.o : program3.C
+        g++ -c program3.C
+
+clean :
+        rm program1 program2 program3 *.o
+
+\end{verbatim}
+
+The above Makefile compiles program1 if you type {\tt make program1},
+program2 if you type {\tt make program2}, program3 if you type {\tt
+  make program3}. It will compile all programs if you type {\tt make
+  all}. Finally, {\tt make clean} will remove the executables and all
+object files.
+
+
+
+\end{document}

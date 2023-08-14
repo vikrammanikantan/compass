@@ -5,7 +5,7 @@
 Dates: August 14th, 15th, 17th and 18th. \
        (Monday, Tuesday, Thursday and Friday) \
 When: 10am - 2pm everyday \
-Where: Steward Observatory 204 & [Zoom](https://arizona.zoom.us/w/84892165444?tk=wB5jokvHh-gw1PI-Gaj6AwxzDKVGKkGDCqkXAO4Xzjw.DQMAAAATw_elRBZZNU4xT2E1UlJjMmFlY0NDMUdkenpBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) \
+Where: Steward Observatory 204 & [Zoom (Registration)](https://arizona.zoom.us/meeting/register/tZAlfuupqD4uHtBD6uaf6u6XsSnPbkeQEKsO) \
 Resources: [github.com/vikrammanikantan/compass](github.com/vikrammanikantan/compass)
 
 **Monday** \

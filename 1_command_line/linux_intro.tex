@@ -710,17 +710,80 @@ Here A is a integer number. The command print the last A lines of the file.
 
 \end{itemize}
 
+\section{More challenges!!}
+Have you gotten this far! Great! In that case, it's a good idea to keep practicing.
+At the following link you will find a GitHub repository with extra fun challenge exercises on it. Download the files and then follow the instructions in the README.txt''
+\url{https://github.com/mssalvatore/command-line-challenges}
+
+Have fun!
+
 \section{Editors}
 
 One of the most important tools in building our programs are text
 editors.  Almost all Linux distributions these days have vi, vim and
-the emacs editors.  If you know vi or vim feel free to use it. Here we
-will see the emacs text editor in addition to vi/vim. Go into the subdir directory and
-launch emacs
+the emacs editors.  Here we have written a quick guide to vi and vim, and emacs, so that you can get started using either.
 
 \subsection{Vi/vim}
+First of all, you need to check what is installed on your system. You might have vim, or just vi. Fortunately, the usage of these two is almost the same.
 
+To check what is set up, we can use the \verb|which| command.
 
+\begin{verbatim}
+which vim
+\end{verbatim}
+
+If you see a filepath to the \verb|vim| executable, then you can use \verb|vim|. If not, you will probably have to use \verb|vi| instead, in place of most of the commands below. There also may be slight differences, which we will handle if they arise.
+
+To launch \verb|vim| call it with the path to a file you want to edit or create
+\begin{verbatim}
+vim my_test_file.txt
+\end{verbatim}
+
+You will see your terminal be taken over by the \verb|vim| text editor.
+This editor is entirely text-based: it runs completely within the terminal interface and doesn't require any graphical elements or interface to be set up.
+Because of this, \verb|vim| and \verb|vi| are installed on almost every system, and are a frequent go-to when trying to read and edit files over terminal and ssh interaces, when you don't have a chance to set up a more complicated and full-featured editor.
+
+It would be nice to populate this blank file with some text.
+But you may notice: your keys aren't doing what you expect!
+The reason is that, in the default mode, keys in vim are reserved for doing commands, such as to navigate the file, select text, and change modes.
+
+In order to edit the file, we need to activate the \textit{insert} text mode, which we can do by pressing the \verb|i| key.
+
+Once in insert mode, you will be able to type normally. Go ahead and type a long sentence, such as,
+
+\begin{verbatim}
+Speak the speech, I pray you, as I pronounc'd it to you, trippingly on the tongue.
+But if you mouth it, as many of our players do, I had as live the town crier spoke my lines.
+Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and (as I may say) whirlwind of your passion, you must acquire and beget a temperance that may give it smoothness.
+O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the cars of the groundlings, who (for the most part) are capable of nothing but inexplicable dumb shows and noise.
+I would have such a fellow whipp'd for o'erdoing Termagant.
+It out-herods Herod. Pray you avoid it.
+\end{verbatim}
+
+The downside of insert mode is that you can't run any commands!
+To exit insert mode, hit the \verb|ESC| key.
+
+Now we have a good amount of text on our file, we can practice navigating around.
+To move, use the arrow keys as you normally would. You'll see the cursor moving around the text.
+
+There are also navigational shortcuts: press \verb|$| to jump to the end of a line, and \verb|^| to jump to the beginning.
+
+You can also use \verb|w| to jump to the next word, and \verb|b| to jump to the previous.
+
+To go to the very end of the file, you can press capital G \verb|shift+G|.
+
+You can also jump to a specific line with \verb|:<line number>|
+
+To select text, you can press \verb|v| to enter visual mode: here, moving your cursor will select text just like a normal text edtior.
+
+To change the text that is selected, you can press \verb|c|, which will take you into insert mode again.
+
+Finally, you can save by pressing \verb|:w| to ``write'' the file.
+
+To quit \verb|vim| you will use \verb|:q|. If you try to quit without saving, you'll get an error. To quit anyway, use \verb|:q!|.
+
+I have to admit, this is only the tip of the iceburg for what vim can do. To access documentation, you can use the \verb|:help|.
+The real power of vim is in the ability of stringing commands together. We may cover more on this on friday.
 
 \subsection{emacs}
 \begin{verbatim}

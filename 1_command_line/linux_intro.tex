@@ -653,6 +653,37 @@ watch -n1 ps
 
 Combining commands unlocks much of the power of the shell interface, and leads eventually to shell scripting, which is a topic we will cover tomorrow.
 
+\section{Wildcards}
+So far, we have written out filepaths explicitly. However, there are many times when you may want to write a long list of files that follow some pattern, without having to do so manually.
+For situations like this, we can use \textit{wildcards}. Wildcards are characters in a filepath that essentially mean ``anything goes here''
+
+For example, go to the following directory
+\begin{verbatim}
+cd /home/USERNAME/COMPASS2023/dir4/subdir/subsubdir
+\end{verbatim}
+In this directory, we could type \verb|ls| to list all the files.
+But, we could also just list the files that obey the pattern ``foo<number>.txt''.
+To do this, we use the \verb|?| wildcard, which means any character can go there
+
+\begin{verbatim}
+ls foo?.txt
+\end{verbatim}
+There is also the \verb|*| wildcard, which stands for ``any string goes here''.
+This can substitute a string of any length.
+
+For example, we could list all the .txt files
+\begin{verbatim}
+ls *.txt
+\end{verbatim}
+Which, of course, are all the files in the directory in this case.
+
+It is also possible to use brackets to specify specific character ranges, for example
+\begin{verbatim}
+ls */out_[2-5].pdb
+\end{verbatim}
+
+Give this a try to list out only certain types of files on your home directory!
+
 \section{Reading files}
 
 Linux has a number of tools to read files

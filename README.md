@@ -4,7 +4,7 @@
 
 Instructors: \
 Vasilis Paschalidis <vpaschal@arizona.edu> \
-Vikram Manikantan <vik@arizona.edu> 
+Vikram Manikantan <vik@arizona.edu> \
 Erik Wessel <ekwessel@arizona.edu>
 
 Dates: August 14th, 15th, 17th and 18th. \

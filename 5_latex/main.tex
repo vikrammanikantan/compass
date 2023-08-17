@@ -47,6 +47,12 @@
 % For the diagrams
 \usepackage{tikz}
 
+% For the molecules
+\usepackage{chemfig}
+
+% For chemical equations
+\usepackage[version=4]{mhchem}
+
 % For the silly diminishing letters effect
 \usepackage{scalerel}
 \newlength\curht
@@ -153,6 +159,10 @@ Diagrams:
 		node {\textit{This is an example tree.}};
 \end{tikzpicture}
 
+Molecular structures:
+\chemfig{*6((=O)-N(-H)-(*5(-N=-N(-H)-))=-(=O)-N(-H)-)}
+\chemfig{H-[1]O-[7]H}
+
 Code snippets:
 
 \begin{lstlisting}[language=Python]
@@ -170,6 +180,9 @@ Fancy equations:
 \end{equation}
 
 The equations can even be embedded in-line: $\vec{F} = m \vec{a}$.
+
+And you can also do Chemical equations:
+\ce{Na2SO4 ->[H2O] Na+ + SO4^2-}
 
 These examples are just the tip of the iceberg!
 
@@ -232,7 +245,7 @@ We can see that the very first command, \verb|\documentclass{article}|, sets the
 
 After that, there are \verb|\usepackage{}| commands. These are what unlock a lot of the magic of \LaTeX{}. Packages are collections of macros (\LaTeX{} commands) that allow you to do complex things simply. For example, here there are packages that allow language-aware formatting, adjust the paper size, enable math typsetting, and allow graphics to be embedded.
 
-Next, the \verb|\title{}| and \verb|\author{}| commands set the title and author. It is important to realize that this is nothing like WYSIWYG: these commands do not draw the title! Instead, the commands just supply information about the title and author. The title is drawn once the document is made, by the \verb|\maketitle| command. Comment this command out and re-compile: the title and author will be gone. Likewise, if you attempt to call \verb|\maketitle| without the \verb|\title{}| and \verb|\author{}| set, the compilation will result in errors.
+Next, the \verb|\title{}| and \verb|\author{}| commands set the title and author. It is important to realize that these commands do not draw the title! Instead, the commands just supply information about the title and author. The title is drawn once the document is made, by the \verb|\maketitle| command. Comment this command out and re-compile: the title and author will be gone. Likewise, if you attempt to call \verb|\maketitle| without the \verb|\title{}| and \verb|\author{}| set, the compilation will result in errors.
 
 Right before the \verb|\maketitle| command, something very important happens: we begin the document, using the \verb|\begin{document}| command. The \verb|\begin{}| command is used in \LaTeX{} to signal that the block of text below it follows special rules. In this case, it follows the rules determined by the document class. Next, the abstract begins with \verb|\begin{abstract}|. This is necessary because the abstract is formatted a little differently than the rest of the document, and has special rules that need to be applied. Later on, we'll see the \verb|\begin{}| command used to start all sorts of special sections, including figures, lists, tables, equations, and code.
 When the abstract is concluded, this is signaled to \LaTeX{} with the corresponding \verb|\end{abstract}| command. Not closing every \verb|\begin{}| with a corresponding \verb|\end{}| will cause an error when compiling.
@@ -269,11 +282,45 @@ In the remainder of the example document, you will see examples of the commands 
 \item Citations
 \item ... etc.
 \end{itemize}
-Read through these. Try making changes. Try uploading your own figure and replacing the default one. The best way to learn \LaTeX{} is to tinker with it!
+The best way to learn is to read these examples, and try making changes. The following exercises are some suggestions to try.
+\subsubsection{Exercises}
+\begin{enumerate}
+\item In the left panel, scroll to the "How to write Mathematics" section.
+\begin{itemize}
+\item Notice how mathematics must be written in \textit{mathmode},
 
-Another way, is to use the internet. Searching will bring up many helpful forum posts and tutorials on \LaTeX{}. There's a good chance you will find yourself back at Overleaf, because in addition to providing a document editing and collaboration system, Overleaf also provides some of the best \LaTeX{} documentation around!
+activated by \verb|$$| inline or a \verb|\begin{equation} - \end{equation}| block.
+\item Add a new \textit{in-line expression} to this section: $e^{i \pi} = -1$
+\item Add your own \textit{equation} to this section: $\sqrt{1+x} = 1 + \frac{1}{2}x - \frac{1}{8}x^2 \cdots$
+\item Change the fractions in the existing equation so that both sides are over $2n^2$ instead of $n$.
+\end{itemize}
+\item Make a section of text \textit{italic} (Hint: use the buttons above the editor window)
+\item Make a section of text \textit{bold}
+\item Change one of the section or subsection titles.
+\item Scroll to the section "How to include figures"
+\begin{itemize}
+\item Change the Figure caption.
+\item Upload your own image and replace the existing one.
+\item Make a second Figure.
+\end{itemize}
+\item Scroll to the "How to add lists" section
+\begin{itemize}
+    \item Add an item to the list
+    \item Add an in-line equation to the list
+    \item Look up how to make the list numbered instead of bullet-points
+\end{itemize}
+\item Scroll to the "How to add tables" section
+\begin{itemize}
+    \item Change the numbers in the table
+    \item Add a new row to the table
+    \item Create a second table, by copying and modifying the first one.
+    \item Put an in-line equation of your choice into the table.
+\end{itemize}
+\end{enumerate}
 
-If you have any notes on you, look through them for mathematical symbols. Can you add any of the equations you see to the document? This document lists many useful mathematical symbols and how to write them in \LaTeX{}: \url{http://tug.ctan.org/info/undergradmath/undergradmath.pdf}. If you can't find what you're looking for there, do a web search or try this handy website: \url{https://detexify.kirelabs.org}
+If you don't know how to do something, look for an example in the document. If you can't find one, search the internet. Searching will bring up many helpful forum posts and tutorials on \LaTeX{}. There's a good chance you will find yourself back at Overleaf, because in addition to providing a document editing and collaboration system, Overleaf also provides some of the best \LaTeX{} documentation around!
+
+This document lists many useful mathematical symbols and how to write them in \LaTeX{}: \url{http://tug.ctan.org/info/undergradmath/undergradmath.pdf}. If you can't find what you're looking for there, do a web search or try this handy website: \url{https://detexify.kirelabs.org}
 
 Finally, because of the large number of \LaTeX{} examples and tutorials on the web, ChatGPT (and other LLMs) are pretty good at writing \LaTeX{} code as well! If you have a very specific thing you want, such as a table structured in a specific way, and aren't sure how to begin, describe what you want to a chatbot in words. It should produce well-commented code which has a good chance of compiling and doing roughly what you want. You can read it, understand how it works, and modify it as you see fit!
 
@@ -297,7 +344,7 @@ And then I can reference the equation above as Equation \ref{eq:rel_energy_momen
 \end{lstlisting}
 Note that starting the reference labels with "\verb|eq:|" and "\verb|section:|" is not necessary, it's just a nice convention to follow to keep the types of references straight.
 
-Try it in your own document!
+\textbf{Exercise:} Try it in your own document!
 
 \subsection{Citations and BibTex files}
 We saw from the example document that citations in \LaTeX{} require a bibliography file with a .bib extension--called a BibTex file. Here, we'll delve into what those files do, and how to produce them.
@@ -335,7 +382,7 @@ Test your ability to figure out how to do stuff in \LaTeX{} with these \textbf{\
 \item Figure out how to make a multi-line equation and reference the individual lines.
 \item Add an appendix to the document.
 \item Add a table of contents to the document.
-\item Get rid of the section numbers.
+\item Look up how to get rid of the section numbers and try to do that.
 \item Embed a snipped of code in the document with automatic syntax highlighting and line numbering.
 \item Try writing these crazy equations from my research!
 \end{itemize}

@@ -8,19 +8,23 @@
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
-% Useful packages
+% Useful packages %
+% For math
 \usepackage{amsmath}
+
+% For figures
 \usepackage{graphicx}
+
+% For links
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% For the code inserts
 \usepackage{listings}
-
 \usepackage{xcolor}
-
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
@@ -38,8 +42,34 @@
     showtabs=false,                  
     tabsize=2
 }
-
 \lstset{style=mystyle}
+
+% For the diagrams
+\usepackage{tikz}
+
+% For the silly diminishing letters effect
+\usepackage{scalerel}
+\newlength\curht
+\def\defaultdimfrac{.98}
+\def\defaultstartht{\baselineskip}
+\newcommand\diminish[2][\defaultdimfrac]{%
+  \curht=\defaultstartht\relax
+  \def\dimfrac{#1}%
+  \diminishhelpA{#2}%
+}
+\newcommand\diminishhelpA[1]{%
+  \expandafter\diminishhelpB#1\relax%
+}
+\def\diminishhelpB#1#2\relax{%
+  \scaleto{\strut#1}{\curht}%
+  \curht=\dimfrac\curht\relax%
+  \ifx\relax#2\relax\else\diminishhelpA{#2}\fi%
+}
+
+% For the music score
+\usepackage{musixtex}
+
+%%%%%
 
 \title{COMPASS Workshop on \LaTeX{} and Overleaf}
 \author{Erik Wessel}
@@ -48,7 +78,7 @@
 \maketitle
 
 \section{Introduction}
-\subsection{Why use code to make douments?}
+\subsection{Why use code to make documents?}
 Everyone at this workshop has plenty of experience with word processors.
 All of you have certainly spent hours writing in Word, Google Docs, or Pages. These editors are simple to use: you just type your text, instantly see what the final document will look like, and if you need to change the formatting you click to select text and there are menus and buttons to change the fonts, formatting, etc.
 
@@ -65,6 +95,83 @@ With \LaTeX{}, it is possible to write files (traditionally with a .tex extensio
 
 \subsection{What is Overleaf?}
 Overleaf is essentially Google Docs for \LaTeX{} documents. This makes it easy to share and collaborate on documents. In addition, since Overleaf lets you create and compile documents all in your browser, it is the easiest way to get started with \LaTeX{}. It also provides lots of friendly documentation and templates, and useful editing tools.
+
+\subsection{What is possible?}
+The programmatic approach to typesetting seems to imply robotic inflexibility--but nothing could be further from the truth!
+\LaTeX{} is code, and code is %
+\textit{h\raisebox{-0.2ex}{a}%
+\raisebox{-0.4ex}{c}%
+\raisebox{-0.2ex}{k}%
+\raisebox{0.0ex}{a}%
+\raisebox{0.4ex}{b}%
+\raisebox{0.2ex}{l}e}.
+
+It is possible to do \raisebox{0pt}[0pt][0pt]{\Large%
+\textbf{c\raisebox{-0.3ex}{ra}%
+\raisebox{-0.7ex}{a}%
+\raisebox{-1.2ex}{a}%
+\raisebox{-2.2ex}{z}%
+\raisebox{-1.2ex}{y}}} things with relative ease!
+
+For example, you can dramatically illustrate that the digits of $\pi$ go on forever:
+\def\defaultstartht{26pt}
+\diminish[0.93]{3.141592653589793238462643383279502884197}
+
+You can write sheet music:
+
+\begin{music}
+\parindent10mm
+  \instrumentnumber{1}        % a single instrument
+  \setname1{Piano}            % whose name is Piano
+  \setstaffs1{2}              % with two staffs
+  \generalmeter{\meterfrac44} % 4/4 meter chosen
+  \startextract               % starting real score
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\hl j\en
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\ql l\sk\ql n\en
+    \bar
+    \Notes\ibu0f0\qb0{dgf}|\qlp i\en
+    \notes\tbu0\qb0g|\ibbl1j3\qb1j\tbl1\qb1k\en
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\hl j\en
+  \zendextract               % terminate excerpt
+\end{music}
+
+Diagrams:
+
+\begin{tikzpicture}
+	\node (is-root) {is}
+		[sibling distance=3cm]
+		child { node {this} }
+		child {
+			node {tree}
+				[sibling distance=1.5cm]
+				child { node {an} }
+				child { node {example} }
+				child { node {.} }
+				child[missing]
+		};
+	\path (is-root) +(0,-2.5\tikzleveldistance)
+		node {\textit{This is an example tree.}};
+\end{tikzpicture}
+
+Code snippets:
+
+\begin{lstlisting}[language=Python]
+def fibonacci_of(n):
+...     if n in {0, 1}:  # Base case
+...         return n
+...     return fibonacci_of(n - 1) + fibonacci_of(n - 2)  # Recursive case
+\end{lstlisting}
+
+Fancy equations:
+
+\begin{equation}\label{eq:product_decomp}
+  _{s_{1}}Y_{\ell_{1} m_{1}} ~_{s_{2}}Y_{\ell_{2} m_{2}} = \sum_{S, L, M}\sqrt{\frac{(2\ell_{1}+1)(2\ell_{2}+1)}{4\pi(2L+1)}}
+  \langle\ell_{1} s_{1}, \ell_{2} s_{2} | L S \rangle \langle\ell_{1} m_{1}, \ell_{2} m_{2} | LM \rangle _{S}Y_{LM}.
+\end{equation}
+
+The equations can even be embedded in-line: $\vec{F} = m \vec{a}$.
+
+These examples are just the tip of the iceberg!
 
 \section{Getting Started}
 The best way to learn \LaTeX{} is to start using it. First we will create a document in Overleaf. Go to \url{https://www.overleaf.com}. If you've never been there before, you will see the login page. Either log-in with your account on another service, or create a new account with overleaf.
@@ -166,7 +273,7 @@ Read through these. Try making changes. Try uploading your own figure and replac
 
 Another way, is to use the internet. Searching will bring up many helpful forum posts and tutorials on \LaTeX{}. There's a good chance you will find yourself back at Overleaf, because in addition to providing a document editing and collaboration system, Overleaf also provides some of the best \LaTeX{} documentation around!
 
-If you have any notes on you, look through them for mathematical symbols. Can you add any of the equations you see to the document? If you don't know the \LaTeX{} command for a symbol, do a web search, or try this handy website: \url{https://detexify.kirelabs.org}
+If you have any notes on you, look through them for mathematical symbols. Can you add any of the equations you see to the document? This document lists many useful mathematical symbols and how to write them in \LaTeX{}: \url{http://tug.ctan.org/info/undergradmath/undergradmath.pdf}. If you can't find what you're looking for there, do a web search or try this handy website: \url{https://detexify.kirelabs.org}
 
 Finally, because of the large number of \LaTeX{} examples and tutorials on the web, ChatGPT (and other LLMs) are pretty good at writing \LaTeX{} code as well! If you have a very specific thing you want, such as a table structured in a specific way, and aren't sure how to begin, describe what you want to a chatbot in words. It should produce well-commented code which has a good chance of compiling and doing roughly what you want. You can read it, understand how it works, and modify it as you see fit!
 
@@ -235,11 +342,6 @@ Test your ability to figure out how to do stuff in \LaTeX{} with these \textbf{\
 
 \begin{equation}\label{eq:stress_eng_consrv}
   \nabla_{\mu}\left( \int d\Omega n^{\gamma} n^{\mu} I \right) = \int d\Omega n^{\gamma}(j - \alpha I).
-\end{equation}
-
-\begin{equation}\label{eq:product_decomp}
-  _{s_{1}}Y_{\ell_{1} m_{1}} ~_{s_{2}}Y_{\ell_{2} m_{2}} = \sum_{S, L, M}\sqrt{\frac{(2\ell_{1}+1)(2\ell_{2}+1)}{4\pi(2L+1)}}
-  \langle\ell_{1} s_{1}, \ell_{2} s_{2} | L S \rangle \langle\ell_{1} m_{1}, \ell_{2} m_{2} | LM \rangle _{S}Y_{LM}.
 \end{equation}
 
 \begin{subequations}\label{eq:rt_cov_sph2}

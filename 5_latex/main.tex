@@ -396,7 +396,7 @@ Test your ability to figure out how to do stuff in \LaTeX{} with these \textbf{\
     \nabla_{\mu}\left( \frac{n^{\mu} I_{\nu}}{\nu} \right)
     &+ \frac{\partial}{\partial \nu}\left(-n^{A}n^{B}\omega^{I}_{AB} n_{I} I_{\nu} \right) \\
     &+ \frac{1}{\sin{(\theta)}}\frac{\partial}{\partial \theta}\left( \sin{(\theta)} (-n^{A}n^{B}((\cos{\phi}\omega^{X}_{AB}+\sin{\phi}\omega^{Y}_{AB})\cos{\theta} - \sin{\theta}\omega^{Z}_{AB}) ) \frac{I_{\nu}}{\nu} \right) \\
-    &+\frac{\partial}{\partial \phi}\left((-n^{A}n^{B}(\cos{\phi}\omega^{Y}_{AB} - \sin{\phi}\omega^{X}_{AB})\frac{1}{\sin{\theta}} ) \frac{I_{\nu}}{\nu} \right) = \frac{j_{\nu} - \alpha_{\nu}I_{\nu}}{\nu}.
+    &+\frac{\partial}{\partial \phi}\left((-n^{A}n^{B}(\cos{\phi}\omega^{Y}_{AB} - \sin{phi}\omega^{X}_{AB})\frac{1}{\sin{\theta}} ) \frac{I_{\nu}}{\nu} \right) = \frac{j_{\nu} - \alpha_{\nu}I_{\nu}}{\nu}.
   \end{align}
 \end{subequations}
 
@@ -417,21 +417,40 @@ Unfortunately, free accounts are limited in the number of collaborators they can
 \subsection{Using \LaTeX{} without Overleaf}
 We saw in section~\ref{section:sharing} that Overleaf charges for using it's collaboration features for more than one person, which is definitely an inconvenience.
 
-However, there is a way around this problem. \LaTeX{} is \textit{free software}, it existed long before Overleaf, and we don't need to be dependent on it to us \LaTeX{}! It is possible to install \LaTeX{} compilers on your own machine. Because \LaTeX{} is essentially \textit{source code} for your documents, you can edit it with any tool you use to edit code: Vim, Emacs, Sublime Text, VSCode, even jupyter if you want to be crazy! Or, you can download a special purpose \LaTeX{} editor, there are several to choose from.
+However, there is a way around this problem. \LaTeX{} is \textit{free software}, it existed long before Overleaf, and we don't need to be dependent on it to use \LaTeX{}! It is possible to install \LaTeX{} compilers on your own machine. Because \LaTeX{} is essentially \textit{source code} for your documents, you can edit it with any tool you use to edit code: Vim, Emacs, Sublime Text, VSCode, even jupyter if you want to be crazy! Or, you can download a special purpose \LaTeX{} editor, there are several to choose from.
 
 Then, if you want to collaborate with someone else, you can do so the way you collaborate on code by creating a git repository on GitHub or Bitbucket.
 
-The key to doing this is getting \LaTeX{} on your machine. There are several options depending on your platform:
-\begin{itemize}
-    \item Linux - TBD
-    \item Mac - TBD
-    \item Windows -TBD
-\end{itemize}
+The key to doing this is getting \LaTeX{} on your machine. A good \LaTeX{} distribution is \TeX{} Live, which has installation instructions for all major platforms at this link \url{https://www.tug.org/texlive}
 
-\subsection{Defining your own macros}
-TBD.
+Once you have installed \LaTeX{} on your own machine, you can call the compiler manually. One was is to use a \LaTeX{} editor, which some versions of \TeX{} Live come with, to build the document. Another way is to call a compiler, such as \verb|pdflatex| in the command line, and pass it your \verb|.tex| file, for example: \verb|pdflatex mydocument.tex|. The details here will depend on exactly what you have installed and what system you are on, but once this is set up, you are free to build \LaTeX{} documents on your own without needing Overleaf.
+
+\subsection{Defining your own commands / macros}
+In \LaTeX{}, most commands that begin with \verb|\| are what are programmers call ``macros''. Macros are pieces of code that stand in for other pieces of code, so that, when code is run, the macros are replaced with more complicated statements, and the resulting program is run. And \LaTeX{} has a command (itself really a macro) that lets you define your own command macros:
+\begin{lstlisting}[language=TeX]
+\newcommand{\<NAME OF COMMAND>}{<LaTeX CODE THAT DEFINES COMMAND>}
+\end{lstlisting}
+For example, lets say I'm writing some Calculus notes and I'd like to save the hassle of writing out partial derivatives. I could define:
+
+\begin{lstlisting}[language=TeX]
+\newcommand{\ddx}{\frac{\partial}{\partial x}}
+\end{lstlisting}
+
+And then later in an equation do:
+
+\begin{lstlisting}[language=TeX]
+$\ddx \sin(x) = \cos(x)$
+\end{lstlisting}
+\newcommand{\ddx}{\frac{\partial}{\partial x}}
+The result would be $\ddx \sin(x) = \cos(x)$.
+
+In fact, this system is so powerful that all of \LaTeX{} is build in it! \LaTeX{} in fact is \textit{not a language at all}: the only language here is \TeX{}, which defines the basic formatting commands. Instead, \LaTeX{} is a huge bundle of macro definitions that enable a large amount of functionality very simply.
+
+For details on how to go further and make more complicated commands, see the wonderful Overleaf article on the topic to get started: \url{https://www.overleaf.com/learn/latex/Commands}.
+
+In additon, there is a related article that teaches you how to create your own \textit{environments}: \url{https://www.overleaf.com/learn/latex/Environments}.
 
 \subsection{Creating your own document class}
-TBD.
+Finally, it may come as no surprise that you can create your own document class in the form of custom \verb|.cls| files. For a getting started guide on doing this, go here: \url{https://www.overleaf.com/learn/latex/Writing_your_own_class}.
 
 \end{document}

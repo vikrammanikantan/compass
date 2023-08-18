@@ -8,19 +8,23 @@
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
-% Useful packages
+% Useful packages %
+% For math
 \usepackage{amsmath}
+
+% For figures
 \usepackage{graphicx}
+
+% For links
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% For the code inserts
 \usepackage{listings}
-
 \usepackage{xcolor}
-
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
@@ -38,8 +42,40 @@
     showtabs=false,                  
     tabsize=2
 }
-
 \lstset{style=mystyle}
+
+% For the diagrams
+\usepackage{tikz}
+
+% For the molecules
+\usepackage{chemfig}
+
+% For chemical equations
+\usepackage[version=4]{mhchem}
+
+% For the silly diminishing letters effect
+\usepackage{scalerel}
+\newlength\curht
+\def\defaultdimfrac{.98}
+\def\defaultstartht{\baselineskip}
+\newcommand\diminish[2][\defaultdimfrac]{%
+  \curht=\defaultstartht\relax
+  \def\dimfrac{#1}%
+  \diminishhelpA{#2}%
+}
+\newcommand\diminishhelpA[1]{%
+  \expandafter\diminishhelpB#1\relax%
+}
+\def\diminishhelpB#1#2\relax{%
+  \scaleto{\strut#1}{\curht}%
+  \curht=\dimfrac\curht\relax%
+  \ifx\relax#2\relax\else\diminishhelpA{#2}\fi%
+}
+
+% For the music score
+\usepackage{musixtex}
+
+%%%%%
 
 \title{COMPASS Workshop on \LaTeX{} and Overleaf}
 \author{Erik Wessel}
@@ -48,7 +84,7 @@
 \maketitle
 
 \section{Introduction}
-\subsection{Why use code to make douments?}
+\subsection{Why use code to make documents?}
 Everyone at this workshop has plenty of experience with word processors.
 All of you have certainly spent hours writing in Word, Google Docs, or Pages. These editors are simple to use: you just type your text, instantly see what the final document will look like, and if you need to change the formatting you click to select text and there are menus and buttons to change the fonts, formatting, etc.
 
@@ -65,6 +101,90 @@ With \LaTeX{}, it is possible to write files (traditionally with a .tex extensio
 
 \subsection{What is Overleaf?}
 Overleaf is essentially Google Docs for \LaTeX{} documents. This makes it easy to share and collaborate on documents. In addition, since Overleaf lets you create and compile documents all in your browser, it is the easiest way to get started with \LaTeX{}. It also provides lots of friendly documentation and templates, and useful editing tools.
+
+\subsection{What is possible?}
+The programmatic approach to typesetting seems to imply robotic inflexibility--but nothing could be further from the truth!
+\LaTeX{} is code, and code is %
+\textit{h\raisebox{-0.2ex}{a}%
+\raisebox{-0.4ex}{c}%
+\raisebox{-0.2ex}{k}%
+\raisebox{0.0ex}{a}%
+\raisebox{0.4ex}{b}%
+\raisebox{0.2ex}{l}e}.
+
+It is possible to do \raisebox{0pt}[0pt][0pt]{\Large%
+\textbf{c\raisebox{-0.3ex}{ra}%
+\raisebox{-0.7ex}{a}%
+\raisebox{-1.2ex}{a}%
+\raisebox{-2.2ex}{z}%
+\raisebox{-1.2ex}{y}}} things with relative ease!
+
+For example, you can dramatically illustrate that the digits of $\pi$ go on forever:
+\def\defaultstartht{26pt}
+\diminish[0.93]{3.141592653589793238462643383279502884197}
+
+You can write sheet music:
+
+\begin{music}
+\parindent10mm
+  \instrumentnumber{1}        % a single instrument
+  \setname1{Piano}            % whose name is Piano
+  \setstaffs1{2}              % with two staffs
+  \generalmeter{\meterfrac44} % 4/4 meter chosen
+  \startextract               % starting real score
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\hl j\en
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\ql l\sk\ql n\en
+    \bar
+    \Notes\ibu0f0\qb0{dgf}|\qlp i\en
+    \notes\tbu0\qb0g|\ibbl1j3\qb1j\tbl1\qb1k\en
+    \Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\hl j\en
+  \zendextract               % terminate excerpt
+\end{music}
+
+Diagrams:
+
+\begin{tikzpicture}
+	\node (is-root) {is}
+		[sibling distance=3cm]
+		child { node {this} }
+		child {
+			node {tree}
+				[sibling distance=1.5cm]
+				child { node {an} }
+				child { node {example} }
+				child { node {.} }
+				child[missing]
+		};
+	\path (is-root) +(0,-2.5\tikzleveldistance)
+		node {\textit{This is an example tree.}};
+\end{tikzpicture}
+
+Molecular structures:
+\chemfig{*6((=O)-N(-H)-(*5(-N=-N(-H)-))=-(=O)-N(-H)-)}
+\chemfig{H-[1]O-[7]H}
+
+Code snippets:
+
+\begin{lstlisting}[language=Python]
+def fibonacci_of(n):
+...     if n in {0, 1}:  # Base case
+...         return n
+...     return fibonacci_of(n - 1) + fibonacci_of(n - 2)  # Recursive case
+\end{lstlisting}
+
+Fancy equations:
+
+\begin{equation}\label{eq:product_decomp}
+  _{s_{1}}Y_{\ell_{1} m_{1}} ~_{s_{2}}Y_{\ell_{2} m_{2}} = \sum_{S, L, M}\sqrt{\frac{(2\ell_{1}+1)(2\ell_{2}+1)}{4\pi(2L+1)}}
+  \langle\ell_{1} s_{1}, \ell_{2} s_{2} | L S \rangle \langle\ell_{1} m_{1}, \ell_{2} m_{2} | LM \rangle _{S}Y_{LM}.
+\end{equation}
+
+The equations can even be embedded in-line: $\vec{F} = m \vec{a}$.
+
+And you can also do Chemical equations:
+\ce{Na2SO4 ->[H2O] Na+ + SO4^2-}
+
+These examples are just the tip of the iceberg!
 
 \section{Getting Started}
 The best way to learn \LaTeX{} is to start using it. First we will create a document in Overleaf. Go to \url{https://www.overleaf.com}. If you've never been there before, you will see the login page. Either log-in with your account on another service, or create a new account with overleaf.
@@ -125,7 +245,7 @@ We can see that the very first command, \verb|\documentclass{article}|, sets the
 
 After that, there are \verb|\usepackage{}| commands. These are what unlock a lot of the magic of \LaTeX{}. Packages are collections of macros (\LaTeX{} commands) that allow you to do complex things simply. For example, here there are packages that allow language-aware formatting, adjust the paper size, enable math typsetting, and allow graphics to be embedded.
 
-Next, the \verb|\title{}| and \verb|\author{}| commands set the title and author. It is important to realize that this is nothing like WYSIWYG: these commands do not draw the title! Instead, the commands just supply information about the title and author. The title is drawn once the document is made, by the \verb|\maketitle| command. Comment this command out and re-compile: the title and author will be gone. Likewise, if you attempt to call \verb|\maketitle| without the \verb|\title{}| and \verb|\author{}| set, the compilation will result in errors.
+Next, the \verb|\title{}| and \verb|\author{}| commands set the title and author. It is important to realize that these commands do not draw the title! Instead, the commands just supply information about the title and author. The title is drawn once the document is made, by the \verb|\maketitle| command. Comment this command out and re-compile: the title and author will be gone. Likewise, if you attempt to call \verb|\maketitle| without the \verb|\title{}| and \verb|\author{}| set, the compilation will result in errors.
 
 Right before the \verb|\maketitle| command, something very important happens: we begin the document, using the \verb|\begin{document}| command. The \verb|\begin{}| command is used in \LaTeX{} to signal that the block of text below it follows special rules. In this case, it follows the rules determined by the document class. Next, the abstract begins with \verb|\begin{abstract}|. This is necessary because the abstract is formatted a little differently than the rest of the document, and has special rules that need to be applied. Later on, we'll see the \verb|\begin{}| command used to start all sorts of special sections, including figures, lists, tables, equations, and code.
 When the abstract is concluded, this is signaled to \LaTeX{} with the corresponding \verb|\end{abstract}| command. Not closing every \verb|\begin{}| with a corresponding \verb|\end{}| will cause an error when compiling.
@@ -162,11 +282,45 @@ In the remainder of the example document, you will see examples of the commands 
 \item Citations
 \item ... etc.
 \end{itemize}
-Read through these. Try making changes. Try uploading your own figure and replacing the default one. The best way to learn \LaTeX{} is to tinker with it!
+The best way to learn is to read these examples, and try making changes. The following exercises are some suggestions to try.
+\subsubsection{Exercises}
+\begin{enumerate}
+\item In the left panel, scroll to the "How to write Mathematics" section.
+\begin{itemize}
+\item Notice how mathematics must be written in \textit{mathmode},
 
-Another way, is to use the internet. Searching will bring up many helpful forum posts and tutorials on \LaTeX{}. There's a good chance you will find yourself back at Overleaf, because in addition to providing a document editing and collaboration system, Overleaf also provides some of the best \LaTeX{} documentation around!
+activated by \verb|$$| inline or a \verb|\begin{equation} - \end{equation}| block.
+\item Add a new \textit{in-line expression} to this section: $e^{i \pi} = -1$
+\item Add your own \textit{equation} to this section: $\sqrt{1+x} = 1 + \frac{1}{2}x - \frac{1}{8}x^2 \cdots$
+\item Change the fractions in the existing equation so that both sides are over $2n^2$ instead of $n$.
+\end{itemize}
+\item Make a section of text \textit{italic} (Hint: use the buttons above the editor window)
+\item Make a section of text \textit{bold}
+\item Change one of the section or subsection titles.
+\item Scroll to the section "How to include figures"
+\begin{itemize}
+\item Change the Figure caption.
+\item Upload your own image and replace the existing one.
+\item Make a second Figure.
+\end{itemize}
+\item Scroll to the "How to add lists" section
+\begin{itemize}
+    \item Add an item to the list
+    \item Add an in-line equation to the list
+    \item Look up how to make the list numbered instead of bullet-points
+\end{itemize}
+\item Scroll to the "How to add tables" section
+\begin{itemize}
+    \item Change the numbers in the table
+    \item Add a new row to the table
+    \item Create a second table, by copying and modifying the first one.
+    \item Put an in-line equation of your choice into the table.
+\end{itemize}
+\end{enumerate}
 
-If you have any notes on you, look through them for mathematical symbols. Can you add any of the equations you see to the document? If you don't know the \LaTeX{} command for a symbol, do a web search, or try this handy website: \url{https://detexify.kirelabs.org}
+If you don't know how to do something, look for an example in the document. If you can't find one, search the internet. Searching will bring up many helpful forum posts and tutorials on \LaTeX{}. There's a good chance you will find yourself back at Overleaf, because in addition to providing a document editing and collaboration system, Overleaf also provides some of the best \LaTeX{} documentation around!
+
+This document lists many useful mathematical symbols and how to write them in \LaTeX{}: \url{http://tug.ctan.org/info/undergradmath/undergradmath.pdf}. If you can't find what you're looking for there, do a web search or try this handy website: \url{https://detexify.kirelabs.org}
 
 Finally, because of the large number of \LaTeX{} examples and tutorials on the web, ChatGPT (and other LLMs) are pretty good at writing \LaTeX{} code as well! If you have a very specific thing you want, such as a table structured in a specific way, and aren't sure how to begin, describe what you want to a chatbot in words. It should produce well-commented code which has a good chance of compiling and doing roughly what you want. You can read it, understand how it works, and modify it as you see fit!
 
@@ -190,7 +344,7 @@ And then I can reference the equation above as Equation \ref{eq:rel_energy_momen
 \end{lstlisting}
 Note that starting the reference labels with "\verb|eq:|" and "\verb|section:|" is not necessary, it's just a nice convention to follow to keep the types of references straight.
 
-Try it in your own document!
+\textbf{Exercise:} Try it in your own document!
 
 \subsection{Citations and BibTex files}
 We saw from the example document that citations in \LaTeX{} require a bibliography file with a .bib extension--called a BibTex file. Here, we'll delve into what those files do, and how to produce them.
@@ -228,18 +382,13 @@ Test your ability to figure out how to do stuff in \LaTeX{} with these \textbf{\
 \item Figure out how to make a multi-line equation and reference the individual lines.
 \item Add an appendix to the document.
 \item Add a table of contents to the document.
-\item Get rid of the section numbers.
+\item Look up how to get rid of the section numbers and try to do that.
 \item Embed a snipped of code in the document with automatic syntax highlighting and line numbering.
 \item Try writing these crazy equations from my research!
 \end{itemize}
 
 \begin{equation}\label{eq:stress_eng_consrv}
   \nabla_{\mu}\left( \int d\Omega n^{\gamma} n^{\mu} I \right) = \int d\Omega n^{\gamma}(j - \alpha I).
-\end{equation}
-
-\begin{equation}\label{eq:product_decomp}
-  _{s_{1}}Y_{\ell_{1} m_{1}} ~_{s_{2}}Y_{\ell_{2} m_{2}} = \sum_{S, L, M}\sqrt{\frac{(2\ell_{1}+1)(2\ell_{2}+1)}{4\pi(2L+1)}}
-  \langle\ell_{1} s_{1}, \ell_{2} s_{2} | L S \rangle \langle\ell_{1} m_{1}, \ell_{2} m_{2} | LM \rangle _{S}Y_{LM}.
 \end{equation}
 
 \begin{subequations}\label{eq:rt_cov_sph2}

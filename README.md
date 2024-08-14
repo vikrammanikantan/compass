@@ -16,13 +16,13 @@ Resources: [github.com/vikrammanikantan/compass](github.com/vikrammanikantan/com
 **Monday** \
 10am-10:30am: Introductions & Pre-workshop survey \
 10:30am-noon: Intro to Python & Hands-on Experience \
-noon-1pm: Lunch
+noon-1pm: Lunch \
 1pm-2pm: Python Hands-on experience
 
-**Tuesday**
+**Tuesday** \
 10am-11am: Intro to Linux (pdf notes will be provided) \
 10:30am-noon: Bash scripting \
-noon-1pm: Lunch
+noon-1pm: Lunch \
 1pm-2pm: Hands-on with bash within HPC \
 
 **Wednesday** \
@@ -40,7 +40,7 @@ noon-1pm: Lunch \
 
 **Friday** (Optional) \
 Some more advanced topics on linux: Editors, makefiles \
-Answering any questions 
+Answering any questions  \
 *No Lunch*
 
 

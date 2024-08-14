@@ -17,7 +17,7 @@ Resources: [github.com/vikrammanikantan/compass](github.com/vikrammanikantan/com
 10am-10:30am: Introductions & Pre-workshop survey \
 10:30am-noon: Intro to Python & Hands-on Experience \
 noon-1pm: Lunch \
-1pm-2pm: Python Hands-on experience
+1pm-2pm: Python Hands-on experience \
 
 **Tuesday** \
 10am-11am: Intro to Linux (pdf notes will be provided) \
@@ -29,17 +29,17 @@ noon-1pm: Lunch \
 10am-11am: Matplotlib/Numpy & Other Packages \
 11am-noon:  Matplotlib/Numpy/Hands-on experience \
 noon-1pm: Lunch \
-1pm-2pm: Overleaf/Latex hands-on experience 
+1pm-2pm: Overleaf/Latex hands-on experience \
 
 **Thursday** \
-10am-11am: Debugging
-11am-11:45am: Github Basics
-11:45am-noon: post-workshop survey
+10am-11am: Debugging \
+11am-11:45am: Github Basics \
+11:45am-noon: post-workshop survey \
 noon-1pm: Lunch \
-1pm-2pm: Github Advanced (Working with other packages)
+1pm-2pm: Github Advanced (Working with other packages) \
 
 **Friday** (Optional) \
-Some more advanced topics on linux: Editors, makefiles \
+Some more advanced topics: Editors, makefiles \
 Answering any questions  \
 *No Lunch*
 

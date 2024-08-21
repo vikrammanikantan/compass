@@ -171,16 +171,16 @@ First, to keep things organized, let's create a new directory for all the COMPAS
 In the terminal, type the command
 
 \begin{verbatim}
-mkdir COMPASS2023
+mkdir COMPASS2024
 \end{verbatim}
 
 Then, hit the ``Enter'' key.
 
 Now, we'd like to move into this directory. To do this, we will need another command: \verb|cd| for ``change directory''.
-To change direcotry to be inside the \verb|COMPASS2023| directory we just made, type
+To change direcotry to be inside the \verb|COMPASS2024| directory we just made, type
 
 \begin{verbatim}
-cd COMPASS2023
+cd COMPASS2024
 \end{verbatim}
 
 and hit enter.
@@ -266,7 +266,7 @@ pwd
 You should see something like
 
 \begin{verbatim}
-/home/USERNAME/COMPASS2023/dir4/subdir/subsubdir
+/home/USERNAME/COMPASS2024/dir4/subdir/subsubdir
 \end{verbatim}
 
 where ``USERNAME'' will be your username, while the part before that could be different on different systems. ``pwd'' stands for ``print working directory''.
@@ -274,10 +274,10 @@ where ``USERNAME'' will be your username, while the part before that could be di
 Now we can see that we've fallen into a hole: how do we get out of this directory? We need to go backwards.
 There are several ways to do this.
 One, we could type the full path to wherever we want to go. This is done by starting the path with a \verb|/| to indicate that this path starts at the root of the filesystem, instead of starting from the current location (which is what filepaths begining with nothing imply, along with ones that begin with \verb|./|).
-For example, if we wanted to get back to COMPASS2023, we could type
+For example, if we wanted to get back to COMPASS2024, we could type
 
 \begin{verbatim}
-cd /home/USERNAME/COMPASS2023
+cd /home/USERNAME/COMPASS2024
 \end{verbatim}
 
         Instead, we could use a short hand for returning to the directory one level up
@@ -285,21 +285,21 @@ cd /home/USERNAME/COMPASS2023
 cd ../../../
 \end{verbatim}
 
-        Yet another way to do this is to first call \verb|cd| with no filepath. This takes you to the user directory, and then you can go back into \verb|COMPASS2023| as before
+        Yet another way to do this is to first call \verb|cd| with no filepath. This takes you to the user directory, and then you can go back into \verb|COMPASS2024| as before
 
 \begin{verbatim}
 cd
-cd COMPASS2023
+cd COMPASS2024
 \end{verbatim}
 
-        Use \verb|pwd| to make sure you're back in the \verb|COMPASS2023| folder now, as expected.
+        Use \verb|pwd| to make sure you're back in the \verb|COMPASS2024| folder now, as expected.
 
 \item One of the most convenient shortcuts of linux is the
   ``tab-completion''. Which helps in writing all these long paths.
   Try again changing into the subsubdir using the absolute path
 
 \begin{verbatim}
-cd /home/USERNAME/COMPASS2023/dir4/subdir/subsubdir
+cd /home/USERNAME/COMPASS2024/dir4/subdir/subsubdir
 \end{verbatim}
 
 but each time you hit a letter hit the ``tab'' button a couple of
@@ -342,7 +342,7 @@ the extension .txt or .dat or .png or .jpg is treated as a text file in linux.
 \item Let create our first file using the ``touch'' command. Type
 
 \begin{verbatim}
-cd /home/USERNAME/COMPASS2023/dir4/subdir/subsubdir
+cd /home/USERNAME/COMPASS2024/dir4/subdir/subsubdir
 \end{verbatim}
 
 and
@@ -452,7 +452,7 @@ your friend.
 Copying files or moving them is always useful. Create a new directory in your home directory, typing
 
 \begin{verbatim}
-cd ~/COMPASS2023; mkdir dir1
+cd ~/COMPASS2024; mkdir dir1
 \end{verbatim}
 
 Notice that we used ``$\sim$/'', which is a shortcut to the home
@@ -659,7 +659,7 @@ For situations like this, we can use \textit{wildcards}. Wildcards are character
 
 For example, go to the following directory
 \begin{verbatim}
-cd /home/USERNAME/COMPASS2023/dir4/subdir/subsubdir
+cd /home/USERNAME/COMPASS2024/dir4/subdir/subsubdir
 \end{verbatim}
 In this directory, we could type \verb|ls| to list all the files.
 But, we could also just list the files that obey the pattern ``foo<number>.txt''.
